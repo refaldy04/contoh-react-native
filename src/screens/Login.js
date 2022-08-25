@@ -14,23 +14,32 @@ import Input from '../components/Input';
 
 import bg from '../assets/bg.jpg';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const onLogin = () => {
     if (email === 'admin@mail.com' && password === 'admin') {
       Alert.alert('Success', 'Login Success');
     } else {
-      Alert.alert('Error', 'Wrong username or password');
+      Alert.alert('Error', 'Not registered, Redirecting...', [
+        {
+          text: 'OKIEE',
+          onPress: () => {
+            navigation.navigate('Signup');
+          },
+        },
+      ]);
     }
     // console.log('Hello from login')
   };
   return (
-    <View style={styles.wrapper}>
+    <View contentContainerStyle={styleLocal.container} style={styles.wrapper}>
       <View style={styles.header}>
         <ImageBackground source={bg} style={styleLocal.flex} />
       </View>
-      <ScrollView style={styles.content}>
+      <ScrollView
+        contentContainerStyle={styleLocal.container}
+        style={styles.content}>
         <View style={styles.textHeader}>
           <Text style={styles.text}>Welcome back</Text>
         </View>
@@ -60,14 +69,18 @@ const Login = () => {
             </View>
           </TouchableOpacity>
         </View>
-        {/* <View style={{height: 1000}} /> */}
       </ScrollView>
-      <View style={styles.footer} />
+      <View style={styles.footer}>
+        {/* <ImageBackground source={bg} style={styleLocal.flex} /> */}
+      </View>
     </View>
   );
 };
 
 const styleLocal = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+  },
   inputWrapper: {
     marginBottom: 10,
   },

@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   content: {
-    flex: 1,
     paddingHorizontal: 10,
   },
   text: {
@@ -31,6 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: PRIMARY_COLOR,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    overflow: 'hidden',
   },
   buttonWrapper: {
     alignItems: 'center',

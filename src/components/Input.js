@@ -15,36 +15,41 @@ const Input = ({
 }) => {
   const [showText, setShow] = React.useState(false);
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.iconWrapper}>
-        <Icon name={icon} size={20} color={PRIMARY_COLOR} />
+    <View style={styles.root}>
+      <View style={styles.wrapper}>
+        <View style={styles.iconWrapper}>
+          <Icon name={icon} size={20} color={PRIMARY_COLOR} />
+        </View>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            placeholder={placeholder}
+            keyboardType={type}
+            secureTextEntry={!showText}
+            onChangeText={onChange}
+            value={value}
+            defaultValue={defaultValue}
+          />
+        </View>
+        {secure && (
+          <TouchableOpacity onPress={() => setShow(!showText)}>
+            <View style={styles.iconWrapper}>
+              <Icon
+                name={showText ? 'eye-slash' : 'eye'}
+                size={20}
+                color={PRIMARY_COLOR}
+              />
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
-      <View style={styles.inputWrapper}>
-        <TextInput
-          placeholder={placeholder}
-          keyboardType={type}
-          secureTextEntry={!showText}
-          onChangeText={onChange}
-          value={value}
-          defaultValue={defaultValue}
-        />
-      </View>
-      {secure && (
-        <TouchableOpacity onPress={() => setShow(!showText)}>
-          <View style={styles.iconWrapper}>
-            <Icon
-              name={showText ? 'eye-slash' : 'eye'}
-              size={20}
-              color={PRIMARY_COLOR}
-            />
-          </View>
-        </TouchableOpacity>
-      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  root: {
+    padding: 3,
+  },
   wrapper: {
     backgroundColor: 'white',
     elevation: 3,
